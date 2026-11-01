@@ -4,7 +4,9 @@
   "name": "Vengeance's Mark: Setup",
   "folder": null,
   "sort": 100000,
-  "ownership": { "default": 0 },
+  "ownership": {
+    "default": 0
+  },
   "flags": {},
   "pages": [
     {
@@ -12,13 +14,18 @@
       "_key": "!journal.pages!pmVengeanceGuide.pmVengeanceSetup",
       "name": "Setup",
       "type": "text",
-      "title": { "show": true, "level": 1 },
+      "title": {
+        "show": true,
+        "level": 1
+      },
       "sort": 100000,
-      "ownership": { "default": -1 },
+      "ownership": {
+        "default": -1
+      },
       "flags": {},
       "text": {
         "format": 1,
-        "content": "<p>Vengeance's Mark picks its target from the damage everyone deals, so part of it lives in the <strong>World Easy Effects</strong> script, next to the system's own world rules (Defeated, Stagger, Panic).</p><h2>Install once per world</h2><ol><li>Import the items you want from the <strong>Boi's Homebrew</strong> compendium, or drag them straight onto gear.</li><li>Open the <strong>Easy Effects</strong> editor for the world script.</li><li>Paste the script below <strong>under</strong> what is already there. Keep the system's default lines.</li><li>Save.</li></ol><h2>The setting</h2><p>The line <code>set flag \"vengeance_mode\" on combat to 3;</code> near the top picks how the mark moves:</p><ul><li><strong>1</strong>: re-pick every round; the mark stays put if nobody hurt your side.</li><li><strong>2</strong>: re-pick every round; the mark is removed if nobody hurt your side.</li><li><strong>3</strong> (default): sticky; it stays until the marked creature is Defeated or leaves combat, then moves to the next highest candidate.</li></ul><h2>How it decides</h2><ul><li>Only HP lost to attacks counts. Damage to the Marked For Vengeance owner counts too.</li><li>The marked creature comes from the other side; ties go to whoever is first in the combat order.</li><li>It only runs in a combat where someone has Marked For Vengeance on an active augment.</li><li>Chains Of Loyalty asks the player which ally gets the Strength and Endurance.</li></ul><h2>World script</h2><pre><code>{{VENGEANCE_SNIPPET}}</code></pre>"
+        "content": "<p>Vengeance's Mark picks its target from the damage everyone deals, so part of it lives in the <strong>World Easy Effects</strong> script, next to the system's own world rules (Defeated, Stagger, Panic).</p><h2>Install once per world</h2><ol><li>Import the items you want from the <strong>Boi's Homebrew</strong> compendium, or drag them straight onto gear.</li><li>Open <strong>Game Settings</strong> (the gear tab in the sidebar), press <strong>Game Settings</strong>, pick the <strong>Project Moon TTRPG</strong> tab, and press <strong>Edit World Script</strong> under <strong>World EasyEffects script</strong>.</li><li>Select the whole script at the bottom of this page, copy it, and paste it <strong>under</strong> what is already in the editor. Keep the system's default lines.</li><li>Save.</li></ol><h2>The setting</h2><p>The line <code>set flag \"vengeance_mode\" on combat to 3;</code> near the top picks how the mark moves:</p><ul><li><strong>1</strong>: re-pick every round; the mark stays put if nobody hurt your side.</li><li><strong>2</strong>: re-pick every round; the mark is removed if nobody hurt your side.</li><li><strong>3</strong> (default): sticky; it stays until the marked creature is Defeated or leaves combat, then moves to the next highest candidate.</li></ul><h2>How it decides</h2><ul><li>Only HP lost to attacks counts. Damage to the Marked For Vengeance owner counts too.</li><li>The marked creature comes from the other side; ties go to whoever is first in the combat order.</li><li>It only runs in a combat where someone has Marked For Vengeance on an active augment.</li><li>Chains Of Loyalty asks the player which ally gets the Strength and Endurance.</li></ul><h2>World script</h2><pre>{{VENGEANCE_SNIPPET}}</pre>"
       }
     }
   ]
