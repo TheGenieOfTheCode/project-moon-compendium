@@ -1,0 +1,5 @@
+/* The system paints its dialogs dark in every theme, but under Foundry's light theme the buttons
+   keep light-theme text colour, which leaves dark text on dark buttons. */
+.application.PMTTRPG-dialog .window-content button {
+  color: inherit;
+}

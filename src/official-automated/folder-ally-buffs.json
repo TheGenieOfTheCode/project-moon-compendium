@@ -1,0 +1,12 @@
+{
+  "_id": "pmAllyBuffFolder",
+  "_key": "!folders!pmAllyBuffFolder",
+  "type": "Item",
+  "folder": null,
+  "name": "Ally Buffs",
+  "color": "#3f7ab0",
+  "sorting": "a",
+  "description": "",
+  "sort": 200000,
+  "flags": {}
+}

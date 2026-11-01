@@ -1,0 +1,53 @@
+{
+  "_id": "pmGivePoise00000",
+  "_key": "!items!pmGivePoise00000",
+  "name": "Give Poise",
+  "type": "effect",
+  "folder": "pmAllyBuffFolder",
+  "img": "systems/projectmoonttrpg/assets/icons/Statuses/Poise.webp",
+  "sort": 100000,
+  "system": {
+    "name": "",
+    "description": "<p><em>Automated copy of the official row: the player picks the ally.</em></p>",
+    "slug": "give-poise",
+    "homebrewDependencies": [],
+    "subtype": "regular",
+    "subsubtype": "regular",
+    "homebrew": {
+      "author": "",
+      "source": "Community Rules (automated by Project Moon Compendium)"
+    },
+    "cost": 2,
+    "stackMax": 5,
+    "appliesTo": "skill",
+    "subtypeWhitelist": [
+      "regular"
+    ],
+    "subsubtypeWhitelist": [
+      "regular"
+    ],
+    "canPositive": true,
+    "canNegative": false,
+    "procOn": "onClashResult",
+    "procResult": "none",
+    "procResultLocked": false,
+    "procChoice": "none",
+    "procChoiceLocked": false,
+    "procStat": "any",
+    "procDice": "any",
+    "procAction": "any",
+    "procCondition": "",
+    "positive": "<p>Apply [N] [[/status Poise]] to another character.</p>",
+    "negative": "",
+    "macro": {
+      "uuid": ""
+    },
+    "customNotes": "",
+    "easyEffects": "[On Clash RESULT]\nproc \"Give Ally: (N) Poise\";"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

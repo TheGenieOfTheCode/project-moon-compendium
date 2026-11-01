@@ -1,0 +1,53 @@
+{
+  "_id": "pmChargeStrength",
+  "_key": "!items!pmChargeStrength",
+  "name": "Charge - Strength",
+  "type": "effect",
+  "folder": "pmAllyBuffFolder",
+  "img": "systems/projectmoonttrpg/assets/icons/Statuses/Strength.webp",
+  "sort": 220000,
+  "system": {
+    "name": "",
+    "description": "<p><em>Automated copy of the official row: the player picks themself or an ally.</em></p>",
+    "slug": "charge-strength",
+    "homebrewDependencies": [],
+    "subtype": "regular",
+    "subsubtype": "regular",
+    "homebrew": {
+      "author": "",
+      "source": "Community Rules (automated by Project Moon Compendium)"
+    },
+    "cost": 3,
+    "stackMax": 5,
+    "appliesTo": "skill",
+    "subtypeWhitelist": [
+      "regular"
+    ],
+    "subsubtypeWhitelist": [
+      "regular"
+    ],
+    "canPositive": true,
+    "canNegative": false,
+    "procOn": "onClashResult",
+    "procResult": "none",
+    "procResultLocked": false,
+    "procChoice": "none",
+    "procChoiceLocked": false,
+    "procStat": "any",
+    "procDice": "any",
+    "procAction": "any",
+    "procCondition": "",
+    "positive": "<p>Consume [N*6] [[/status Charge]] to gain [N] [[/status Strength]] on self or an ally next round.</p>",
+    "negative": "",
+    "macro": {
+      "uuid": ""
+    },
+    "customNotes": "",
+    "easyEffects": "[On Clash RESULT with CHOICE]\nspend (N*6) Charge to proc \"Give Self Or Ally: (N) Strength next round\";"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

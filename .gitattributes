@@ -1,0 +1,4 @@
+* text=auto eol=lf
+packs/** binary
+*.png binary
+*.webp binary

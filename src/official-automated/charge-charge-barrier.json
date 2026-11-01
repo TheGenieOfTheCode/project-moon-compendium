@@ -1,0 +1,53 @@
+{
+  "_id": "pmChargeBarrier0",
+  "_key": "!items!pmChargeBarrier0",
+  "name": "Charge - Charge Barrier",
+  "type": "effect",
+  "folder": "pmAllyBuffFolder",
+  "img": "systems/projectmoonttrpg/assets/icons/Statuses/Charge%20Barrier.webp",
+  "sort": 210000,
+  "system": {
+    "name": "",
+    "description": "<p><em>Automated copy of the official row: the player picks themself or an ally.</em></p>",
+    "slug": "charge-charge-barrier",
+    "homebrewDependencies": [],
+    "subtype": "regular",
+    "subsubtype": "regular",
+    "homebrew": {
+      "author": "",
+      "source": "Community Rules (automated by Project Moon Compendium)"
+    },
+    "cost": 2,
+    "stackMax": 5,
+    "appliesTo": "skill",
+    "subtypeWhitelist": [
+      "regular"
+    ],
+    "subsubtypeWhitelist": [
+      "regular"
+    ],
+    "canPositive": true,
+    "canNegative": false,
+    "procOn": "onClashResult",
+    "procResult": "none",
+    "procResultLocked": false,
+    "procChoice": "none",
+    "procChoiceLocked": false,
+    "procStat": "any",
+    "procDice": "any",
+    "procAction": "any",
+    "procCondition": "",
+    "positive": "<p>Consume [N*2] [[/status Charge]] to gain [N] [[/status Charge]] Barrier on self or on an ally next round.</p>",
+    "negative": "",
+    "macro": {
+      "uuid": ""
+    },
+    "customNotes": "",
+    "easyEffects": "[On Clash RESULT with CHOICE]\nspend (N*2) Charge to proc \"Give Self Or Ally: (N) Charge Barrier next round\";"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

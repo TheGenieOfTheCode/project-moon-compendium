@@ -1,0 +1,73 @@
+
+# Vengeance's Mark (Boi's Homebrew). Paste below the system's default world script.
+# SETTING: how the mark moves between rounds. Change the 3 to pick:
+#   1 = re-pick every round; the mark stays put if nobody hurt your side
+#   2 = re-pick every round; the mark is removed if nobody hurt your side
+#   3 = sticky; it stays until the marked creature is Defeated or leaves combat
+[Start of Round]
+require hasFlag "vengeance_on" combat == 1 then set flag "vengeance_mode" on combat to 3;
+
+# Marked For Vengeance puts the owner's side on the books; damage to them is tallied on the attacker.
+[On Vengeance Side]
+set flag "vengeance_side" on self to 1;
+
+[On Taking Damage]
+require hasFlag "vengeance_side" self == 1 and (damage.attack) == 1 then
+  set flag "vengeance_hp_before" on self to (self.hp);
+
+[On Dealing Damage]
+require hasFlag "vengeance_on" combat == 1 and hasFlag "vengeance_side" target == 1 and hasFlag "vengeance_side" self == 0 and hasFlag "vengeance_hp_before" target == 1 then
+  increase flag "vengeance_dealt" on self by (max(target.flag.vengeance_hp_before - target.hp, 0));
+
+# End of Round runs for every combatant before any Start of Round, so it can fold a running best.
+[End of Round]
+require hasFlag "vengeance_on" combat == 1 and (combat.flag.vengeance_best_round) != (round) then
+  set flag "vengeance_best" on combat to 0 and
+  set flag "vengeance_best_id" on combat to "none" and
+  set flag "vengeance_best_round" on combat to (round);
+require hasFlag "vengeance_on" combat == 1 and hasFlag "vengeance_side" self == 0 and (self.status.Defeated) == 0 and hasFlag "vengeance_dealt" self == 1 and (self.flag.vengeance_dealt) > (combat.flag.vengeance_best) then
+  set flag "vengeance_best" on combat to (self.flag.vengeance_dealt) and
+  set flag "vengeance_best_id" on combat to (self.id);
+
+[Start of Round]
+require hasFlag "vengeance_on" combat == 1 and (combat.flag.vengeance_best_round) == (round) and (combat.flag.vengeance_mode) == 3 and hasFlag "vengeance_holder" combat == 0 and (combat.flag.vengeance_best_id) == (self.id) then
+  inflict "Vengeance's Mark" on self;
+require hasFlag "vengeance_on" combat == 1 and (combat.flag.vengeance_best_round) == (round) and (combat.flag.vengeance_mode) != 3 and (combat.flag.vengeance_best_id) == (self.id) and (self.status."Vengeance's Mark") == 0 then
+  inflict "Vengeance's Mark" on self;
+require hasFlag "vengeance_on" combat == 1 and (combat.flag.vengeance_best_round) == (round) and (combat.flag.vengeance_mode) != 3 and (combat.flag.vengeance_best) > 0 and (combat.flag.vengeance_best_id) != (self.id) and (self.status."Vengeance's Mark") >= 1 then
+  lose all "Vengeance's Mark" on self;
+require hasFlag "vengeance_on" combat == 1 and (combat.flag.vengeance_best_round) == (round) and (combat.flag.vengeance_mode) == 2 and (combat.flag.vengeance_best) == 0 and (self.status."Vengeance's Mark") >= 1 then
+  lose all "Vengeance's Mark" on self;
+require hasFlag "vengeance_dealt" self == 0 then clear flag "vengeance_last" on self;
+require hasFlag "vengeance_dealt" self == 1 then
+  set flag "vengeance_last" on self to (self.flag.vengeance_dealt) and
+  clear flag "vengeance_dealt" on self;
+
+# Handoff when the marked creature can't fight. Procs carry the old holder as `target`; each proc
+# is its own emission, so they must not lean on flags staged by this one.
+[On Depleted HP]
+require (self.status."Vengeance's Mark") >= 1 then proc "Vengeance Recount" on all targeting self;
+require (self.status."Vengeance's Mark") >= 1 then proc "Vengeance Reclaim" on all targeting self;
+require (self.status."Vengeance's Mark") >= 1 then lose all "Vengeance's Mark" on self;
+
+[On Combat End]
+require (self.status."Vengeance's Mark") >= 1 then proc "Vengeance Recount" on all targeting self;
+require (self.status."Vengeance's Mark") >= 1 then proc "Vengeance Reclaim" on all targeting self;
+require (self.status."Vengeance's Mark") >= 1 then lose all "Vengeance's Mark" on self;
+clear flag "vengeance_side" on self;
+clear flag "vengeance_hp_before" on self;
+clear flag "vengeance_dealt" on self;
+clear flag "vengeance_last" on self;
+
+[On Vengeance Recount]
+require hasFlag "vengeance_on" combat == 1 and (combat.flag.vengeance_recount_for) != (target.id) then
+  set flag "vengeance_recount" on combat to 0 and
+  set flag "vengeance_recount_id" on combat to "none" and
+  set flag "vengeance_recount_for" on combat to (target.id);
+require hasFlag "vengeance_on" combat == 1 and (self.id) != (target.id) and hasFlag "vengeance_side" self == 0 and (self.status.Defeated) == 0 and hasFlag "vengeance_last" self == 1 and (self.flag.vengeance_last) > (combat.flag.vengeance_recount) then
+  set flag "vengeance_recount" on combat to (self.flag.vengeance_last) and
+  set flag "vengeance_recount_id" on combat to (self.id);
+
+[On Vengeance Reclaim]
+require hasFlag "vengeance_on" combat == 1 and (combat.flag.vengeance_recount_id) == (self.id) then
+  inflict "Vengeance's Mark" on self;

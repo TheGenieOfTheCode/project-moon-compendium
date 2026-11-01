@@ -1,0 +1,53 @@
+{
+  "_id": "pmGiveTypeProtec",
+  "_key": "!items!pmGiveTypeProtec",
+  "name": "Give [Type] Protection",
+  "type": "effect",
+  "folder": "pmAllyBuffFolder",
+  "img": "systems/projectmoonttrpg/assets/icons/limbus_assets/Basic%20Effects/Protection/Blunt%20Protection.webp",
+  "sort": 170000,
+  "system": {
+    "name": "",
+    "description": "<p><em>Automated copy of the official row: the player picks the ally.</em></p>",
+    "slug": "give-type-protection",
+    "homebrewDependencies": [],
+    "subtype": "regular",
+    "subsubtype": "regular",
+    "homebrew": {
+      "author": "",
+      "source": "Community Rules (automated by Project Moon Compendium)"
+    },
+    "cost": 2,
+    "stackMax": 5,
+    "appliesTo": "skill",
+    "subtypeWhitelist": [
+      "regular"
+    ],
+    "subsubtypeWhitelist": [
+      "regular"
+    ],
+    "canPositive": true,
+    "canNegative": false,
+    "procOn": "onClashResult",
+    "procResult": "none",
+    "procResultLocked": false,
+    "procChoice": "none",
+    "procChoiceLocked": false,
+    "procStat": "any",
+    "procDice": "any",
+    "procAction": "any",
+    "procCondition": "",
+    "positive": "<p>Apply [N*2] [Type] Protection to another character next round. The Type is chosen on use.</p>",
+    "negative": "",
+    "macro": {
+      "uuid": ""
+    },
+    "customNotes": "",
+    "easyEffects": "[On Clash RESULT]\ncreate dialog \"Give [Type] Protection: which type of Protection?\":\n  slash as \"Slash Protection\",\n  pierce as \"Pierce Protection\",\n  blunt as \"Blunt Protection\"\n  to self;\n\n[On Dialog Answer slash]\nproc \"Give Ally: (N*2) Slash Protection next round\";\n\n[On Dialog Answer pierce]\nproc \"Give Ally: (N*2) Pierce Protection next round\";\n\n[On Dialog Answer blunt]\nproc \"Give Ally: (N*2) Blunt Protection next round\";"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

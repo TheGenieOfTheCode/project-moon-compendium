@@ -1,0 +1,31 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Stamp version and URLs from the tag
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          REPO="https://github.com/${GITHUB_REPOSITORY}"
+          jq --arg v "$VERSION" --arg r "$REPO" --arg t "$GITHUB_REF_NAME" \
+            '.version = $v | .url = $r | .manifest = ($r + "/releases/latest/download/module.json") | .download = ($r + "/releases/download/" + $t + "/module.zip")' \
+            module.json > module.tmp && mv module.tmp module.json
+
+      - name: Zip the module
+        run: zip -r module.zip module.json scripts styles lang icons packs world-scripts README.md -x "packs/*/LOCK" "packs/*/LOG" "packs/*/LOG.old"
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            module.json
+            module.zip

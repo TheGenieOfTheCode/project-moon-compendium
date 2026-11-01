@@ -1,0 +1,9 @@
+{
+  "PMCOMP": {
+    "GiveAlly": {
+      "Prompt": "Give {what}{when} to whom?",
+      "Self": "{name} (yourself)",
+      "NoAllies": "{name} has no ally to give {what} to."
+    }
+  }
+}

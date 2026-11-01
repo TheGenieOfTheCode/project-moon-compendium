@@ -1,0 +1,35 @@
+{
+  "_id": "pmVengeanceMark0",
+  "_key": "!items!pmVengeanceMark0",
+  "name": "Vengeance's Mark",
+  "type": "status",
+  "folder": "pmVengeanceFoldr",
+  "img": "modules/project-moon-compendium/icons/vengeances-mark.png",
+  "sort": 100000,
+  "system": {
+    "name": "",
+    "description": "<p>[Unique Mark] Target is Vengeance's Marked after dealing the most damage to your allies in the previous round. Some Skills require the target to have Vengeance's Mark. Only one Vengeance's Marked target can exist each round. All other effects of Marks apply with some exceptions:</p><ul><li>Vengeance's Mark cannot be applied if no one can apply or use it.</li><li>Vengeance's Mark does not activate other types of Marked target effects.</li><li>Other Marks can exist on a Vengeance's Marked target.</li><li>The Vengeance's Mark changes target (if conditions change) each round.</li><li>If the Vengeance's Marked target becomes unable to fight, the Vengeance's Mark is automatically applied to the next highest candidate.</li></ul><p><em>Automated by the Vengeance's Mark world script (see the Homebrew Setup journal).</em></p>",
+    "slug": "vengeances-mark",
+    "homebrewDependencies": [],
+    "subtype": "regular",
+    "subsubtype": "regular",
+    "homebrew": { "author": "Boi", "source": "Boi's Homebrew Effects List" },
+    "stacks": 1,
+    "stackMax": 1,
+    "priority": 0,
+    "pending": false,
+    "arrival": "",
+    "shelved": false,
+    "origin": "",
+    "proc": {
+      "turnStart": false, "startOfRound": false, "endOfRound": false, "actionOrReaction": false,
+      "attackerBurst": false, "onHitWhenActorHas": false, "onHitWhenTargetHas": false,
+      "alwaysActive": false, "skillEffect": false
+    },
+    "customNotes": "",
+    "easyEffects": "[On Applied]\nset flag \"vengeance_holder\" on combat to (self.id);\n\n[On Removed]\nrequire hasFlag \"vengeance_holder\" combat == 1 and (combat.flag.vengeance_holder) == (self.id) then\n  clear flag \"vengeance_holder\" on combat;"
+  },
+  "effects": [],
+  "ownership": { "default": 0 },
+  "flags": {}
+}

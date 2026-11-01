@@ -1,0 +1,6 @@
+packs/**/LOCK
+packs/**/LOG
+packs/**/LOG.old
+*.zip
+/Vengeances Mark.png
+/media/
